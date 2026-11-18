@@ -1,4 +1,4 @@
-/* Basic page styling */
+/* Basic styling */
 * {
     box-sizing: border-box;
 }
@@ -10,21 +10,25 @@ body {
     color: #222;
 }
 
-/* Navigation bar */
+/* Navigation using Flexbox */
 header {
     background-color: #10264d;
     padding: 15px;
 }
 
-nav {
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
-nav h2 {
+.navbar h2 {
     color: #f5b335;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
 }
 
 nav a {
@@ -35,6 +39,14 @@ nav a {
 
 nav a:hover {
     color: #f5b335;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+    display: none;
+    background-color: #f5b335;
+    color: #10264d;
+    font-size: 22px;
 }
 
 /* Hero section */
@@ -72,28 +84,69 @@ h2 {
     color: #10264d;
 }
 
-/* Tables */
-table {
+/* Match schedule */
+.match-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#matchSchedule {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
     background-color: white;
 }
 
-th,
-td {
+#matchSchedule th,
+#matchSchedule td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
 }
 
-th {
-    background-color: #10264d;
-    color: white;
+/* Grid view */
+#matchTable.grid-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #eeeeee;
+.grid-view tr {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.grid-view td {
+    border: none !important;
+    text-align: left !important;
+}
+
+/* Hide table headings in grid view */
+#matchSchedule:has(.grid-view) thead {
+    display: none;
+}
+
+/* List view */
+#matchTable.list-view {
+    display: table-row-group;
+}
+
+.list-view tr {
+    display: table-row;
+}
+
+.list-view td {
+    display: table-cell;
+    border: 1px solid #ccc !important;
+    text-align: center !important;
+}
+
+/* View buttons */
+.view-controls {
+    margin: 15px 0;
 }
 
 /* Booking form and summary */
@@ -141,13 +194,23 @@ button:hover {
     background-color: #315b91;
 }
 
-/* Guidelines cards */
+/* Guidelines using CSS Grid */
+#guidelines {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+#guidelines h2 {
+    grid-column: 1 / -1;
+}
+
 article {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 15px;
-    margin: 12px 0;
+    margin: 0;
 }
 
 /* Footer */
@@ -158,23 +221,69 @@ footer {
     padding: 15px;
 }
 
-/* Small screen layout */
+/* Tablet layout */
+@media (max-width: 900px) {
+    #matchTable.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #guidelines {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile layout */
 @media (max-width: 600px) {
-    nav {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
         flex-direction: column;
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
     }
 
     .hero h1 {
         font-size: 24px;
     }
 
-    table {
-        display: block;
+    #matchTable.grid-view {
+        grid-template-columns: 1fr;
+    }
+
+    #guidelines {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-container {
+        flex-direction: column;
+    }
+
+    #matchSchedule {
+        min-width: 600px;
+    }
+
+    #matchTable.list-view {
+        display: table-row-group;
+    }
+
+    .match-container:has(.list-view) {
         overflow-x: auto;
     }
 }
 
-/* Toast Notification */
+/* Toast notification */
 .toast {
     position: fixed;
     bottom: 25px;
