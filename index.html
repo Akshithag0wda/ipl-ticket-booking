@@ -146,22 +146,22 @@
                     <label for="match">Select Match:</label>
                     <select id="match" required>
                         <option value="">Choose Match</option>
-                        <option>RCB vs CSK</option>
-                        <option>MI vs KKR</option>
-                        <option>CSK vs DC</option>
+                        <option value="RCB vs CSK">RCB vs CSK</option>
+                        <option value="MI vs KKR">MI vs KKR</option>
+                        <option value="CSK vs DC">CSK vs DC</option>
                     </select>
 
                     <label for="category">Ticket Category:</label>
                     <select id="category" required>
                         <option value="">Choose Category</option>
-                        <option>General</option>
-                        <option>Premium</option>
-                        <option>VIP</option>
+                        <option value="General">General</option>
+                        <option value="Premium">Premium</option>
+                        <option value="VIP">VIP</option>
                     </select>
 
                     <label for="quantity">Ticket Quantity:</label>
                     <input type="number" id="quantity"
-                           min="1" max="10" required>
+                           min="1" max="10" value="1" required>
 
                     <label for="name">Full Name:</label>
                     <input type="text" id="name" required>
